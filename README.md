@@ -1,19 +1,96 @@
-# 🎈 Blank app template
+# 💚 She-Hulk Transformation Game
 
-A simple Streamlit app template for you to modify!
+A Streamlit game where you can transform Jennifer Walters into She-Hulk in Story Mode or Sandbox Mode.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+## Run locally
 
-### How to run it on your own machine
+1. Install requirements
 
-1. Install the requirements
-
-   ```
-   $ pip install -r requirements.txt
+   ```bash
+   pip install -r requirements.txt
    ```
 
-2. Run the app
+2. Start the app
 
+   ```bash
+   streamlit run streamlit_app.py
    ```
-   $ streamlit run streamlit_app.py
-   ```
+
+## Build a Windows `.exe`
+
+This repo includes a launcher and build script so you can package the app as a Windows executable.
+
+### Option A (quick build with batch file)
+
+On **Windows**, run:
+
+```bat
+build_exe.bat
+```
+
+This will:
+
+- create a virtual environment (`venv`)
+- install dependencies + `pyinstaller`
+- bundle `streamlit_app.py` into the executable
+- generate:
+
+`dist\SheHulkTransformationGame.exe`
+
+### Option B (manual PyInstaller command)
+
+```bash
+pip install -r requirements.txt pyinstaller
+pyinstaller --noconfirm --clean --onefile --name SheHulkTransformationGame --add-data "streamlit_app.py;." launcher.py
+```
+
+### Notes
+
+- Build the executable on Windows to produce a native `.exe`.
+- `requirements.txt` includes both `streamlit` and `pillow`, which the app needs.
+- The launcher entrypoint is `launcher.py`, which runs `streamlit_app.py` internally.
+- If you need custom PyInstaller behavior, add your own `.spec` file and run `pyinstaller your_file.spec`.
+
+## Test the built EXE on Windows
+
+After building, run:
+
+```bat
+test_exe.bat
+```
+
+This verifies `dist\SheHulkTransformationGame.exe` exists and launches it.
+If the browser does not open automatically, go to `http://localhost:8501`.
+
+## Create a downloadable package (ZIP)
+
+After building, run:
+
+```bat
+package_download.bat
+```
+
+This creates:
+
+`release\SheHulkTransformationGame-win64.zip`
+
+You can upload that ZIP to Google Drive, Dropbox, GitHub Releases, or any file host and share the download link.
+
+
+## One-command Windows flow (build + test + package)
+
+If you want one command for everything, run:
+
+```bat
+build_test_package.bat
+```
+
+This will run, in order:
+
+1. `build_exe.bat`
+2. `test_exe.bat`
+3. `package_download.bat`
+
+Final output:
+
+`release\SheHulkTransformationGame-win64.zip`

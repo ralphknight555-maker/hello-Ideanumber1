@@ -32,6 +32,7 @@ This will:
 
 - create a virtual environment (`venv`)
 - install dependencies + `pyinstaller`
+- bundle `streamlit_app.py` into the executable
 - generate:
 
 `dist\SheHulkTransformationGame.exe`
@@ -39,12 +40,13 @@ This will:
 ### Option B (manual PyInstaller command)
 
 ```bash
-pip install pyinstaller -r requirements.txt
-pyinstaller --noconfirm --clean --onefile --name SheHulkTransformationGame launcher.py
+pip install -r requirements.txt pyinstaller
+pyinstaller --noconfirm --clean --onefile --name SheHulkTransformationGame --add-data "streamlit_app.py;." launcher.py
 ```
 
 ### Notes
 
-- The executable build should be performed on Windows to produce a true `.exe`.
+- Build the executable on Windows to produce a native `.exe`.
+- `requirements.txt` includes both `streamlit` and `pillow`, which the app needs.
 - The launcher entrypoint is `launcher.py`, which runs `streamlit_app.py` internally.
 - If you need custom PyInstaller behavior, add your own `.spec` file and run `pyinstaller your_file.spec`.

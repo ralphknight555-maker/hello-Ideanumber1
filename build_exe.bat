@@ -12,7 +12,8 @@ call venv\Scripts\activate
 python -m pip install --upgrade pip
 pip install -r requirements.txt pyinstaller
 
-pyinstaller --noconfirm --clean --onefile --name SheHulkTransformationGame launcher.py
+REM Include streamlit_app.py so launcher can run it from bundled temp folder.
+pyinstaller --noconfirm --clean --onefile --name SheHulkTransformationGame --add-data "streamlit_app.py;." launcher.py
 
 echo.
 echo Build complete. EXE path:

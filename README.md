@@ -76,3 +76,21 @@ This creates:
 
 You can upload that ZIP to Google Drive, Dropbox, GitHub Releases, or any file host and share the download link.
 
+
+## One-command Windows flow (build + test + package)
+
+If you want one command for everything, run:
+
+```bat
+build_test_package.bat
+```
+
+This will run, in order:
+
+1. `build_exe.bat`
+2. `test_exe.bat`
+3. `package_download.bat`
+
+Final output:
+
+`release\SheHulkTransformationGame-win64.zip`

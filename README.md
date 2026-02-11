@@ -50,3 +50,29 @@ pyinstaller --noconfirm --clean --onefile --name SheHulkTransformationGame --add
 - `requirements.txt` includes both `streamlit` and `pillow`, which the app needs.
 - The launcher entrypoint is `launcher.py`, which runs `streamlit_app.py` internally.
 - If you need custom PyInstaller behavior, add your own `.spec` file and run `pyinstaller your_file.spec`.
+
+## Test the built EXE on Windows
+
+After building, run:
+
+```bat
+test_exe.bat
+```
+
+This verifies `dist\SheHulkTransformationGame.exe` exists and launches it.
+If the browser does not open automatically, go to `http://localhost:8501`.
+
+## Create a downloadable package (ZIP)
+
+After building, run:
+
+```bat
+package_download.bat
+```
+
+This creates:
+
+`release\SheHulkTransformationGame-win64.zip`
+
+You can upload that ZIP to Google Drive, Dropbox, GitHub Releases, or any file host and share the download link.
+
